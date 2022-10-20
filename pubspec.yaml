@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.5
   dio: ^4.0.6
   tmdb_api: ^2.1.4
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:
