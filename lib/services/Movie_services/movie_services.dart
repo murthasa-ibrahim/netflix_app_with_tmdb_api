@@ -1,4 +1,4 @@
-
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -6,22 +6,17 @@ import 'package:netflix_with_tmdb/services/api_endpoints/api_end_points.dart';
 import 'package:netflix_with_tmdb/services/api_key/api_key.dart';
 import 'package:netflix_with_tmdb/src/model/movie_model.dart';
 
-class DownloadService {
- Future<List<MovieModel>> getMovies() async {
-  final endPoint = ApiEndPoints.endPoints['Popular'];
-  log(endPoint);
-    final uri =
-        "${ApiEndPoints.baseUrl+endPoint}?api_key=${ApiKey.apiKey}";
+class ApiService {
+  Future<List<Movie>> getMovies(String epKey) async {
+    final endPoint = ApiEndPoints.endPoints[epKey];
+    log(endPoint);
+    final uri = "${ApiEndPoints.baseUrl + endPoint}?api_key=${ApiKey.apiKey}";
     try {
       final response = await Dio().get(
         uri,
       );
       if (response.statusCode == 200) {
-        log("successfully completed the task");
-        List<Map<String,dynamic>> results = response.data["results"];
-        // log(results.toString());
-        // log(response.data["results"].toString());
-        return movieModelFromJson(results);
+        return moviesFromJson(jsonEncode(response.data["results"]));
       }
       throw 'something went wrong';
     } catch (e) {

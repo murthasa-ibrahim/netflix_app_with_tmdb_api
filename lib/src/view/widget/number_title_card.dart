@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_with_tmdb/src/model/movie_model.dart';
 
 import '../../../core/const.dart';
 import 'number_card.dart';
 
 class NumberTitleCard extends StatelessWidget {
   const NumberTitleCard({Key? key, required this.trending}) : super(key: key);
-  final List trending;
+  final List<Movie> trending;
 
   @override
   Widget build(BuildContext context) {

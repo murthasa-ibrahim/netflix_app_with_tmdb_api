@@ -25,7 +25,7 @@ class DownloadImageWidget extends StatelessWidget {
         height: size.height,
         decoration: BoxDecoration(
             image:
-                DecorationImage(image: NetworkImage(image), fit: BoxFit.cover),
+                DecorationImage(image: NetworkImage('https://image.tmdb.org/t/p/w500/$image'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(8)),
       ),
     );

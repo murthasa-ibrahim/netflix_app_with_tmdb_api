@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:netflix_with_tmdb/src/controller/download.dart';
+import 'package:netflix_with_tmdb/src/view_model/fetch_movie_controller.dart';
 
 import '../../../core/const.dart';
 import '../widget/appbar_widget.dart';
 import '../widget/download_image_widget.dart';
 import '../widget/smart_downlaods.dart';
 
-class Downloads extends StatelessWidget {
-   Downloads({Key? key}) : super(key: key);
-   final controller = Get.put<DownloadController>(DownloadController());
-   List imageList = [
-    "https://www.themoviedb.org/t/p/w220_and_h330_face/bnfTPTTytrZZ9Aw6hoOQdojiaKo.jpg",
-    "https://www.themoviedb.org/t/p/w220_and_h330_face/74kkM7E5IymHl7ZS4XugP6YT3zU.jpg",
-    "https://www.themoviedb.org/t/p/w220_and_h330_face/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg"
-  ];
+class Downloads extends GetView {
+  const Downloads({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final movieList = Get.find<FetchMovieController>().trendingList;
     return SafeArea(
       child: Scaffold(
         appBar: const PreferredSize(
-              preferredSize: Size.fromHeight(50),
-              child: AppBarWidget(
-                title: 'Downloads',
-              )),
+            preferredSize: Size.fromHeight(50),
+            child: AppBarWidget(
+              title: 'Downloads',
+            )),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
@@ -57,19 +53,19 @@ class Downloads extends StatelessWidget {
                       radius: size.width * 0.36,
                     ),
                     DownloadImageWidget(
-                      image: imageList[0],
+                      image: movieList[0].posterPath,
                       margin: const EdgeInsets.only(left: 170, bottom: 50),
                       angle: 20,
                       size: Size(size.width * 0.35, size.height * 0.25),
                     ),
                     DownloadImageWidget(
-                      image: imageList[1],
+                      image: movieList[1].posterPath,
                       margin: const EdgeInsets.only(right: 170, bottom: 50),
                       angle: -20,
                       size: Size(size.width * 0.35, size.height * 0.25),
                     ),
                     DownloadImageWidget(
-                      image: imageList[2],
+                      image: movieList[2].posterPath,
                       margin: const EdgeInsets.only(bottom: 12),
                       size: Size(size.width * 0.4, size.height * 0.29),
                     ),
@@ -90,7 +86,9 @@ class Downloads extends StatelessWidget {
                     child: Text(
                       'Setup',
                       style: TextStyle(
-                          color: kWhite, fontSize: 20, fontWeight: FontWeight.bold),
+                          color: kWhite,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -110,7 +108,9 @@ class Downloads extends StatelessWidget {
                     child: Text(
                       'See What You Can Download',
                       style: TextStyle(
-                          color: kBlack, fontSize: 20, fontWeight: FontWeight.w700),
+                          color: kBlack,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),

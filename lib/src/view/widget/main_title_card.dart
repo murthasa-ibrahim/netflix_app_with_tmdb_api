@@ -1,17 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:netflix_with_tmdb/src/model/movie_model.dart';
 
 import '../../../core/const.dart';
 import 'main_image_card.dart';
 
 class MainTitleCard extends StatelessWidget {
-  const MainTitleCard({Key? key, required this.title, required this.trending})
+  const MainTitleCard({Key? key, required this.title, required this.movieList})
       : super(key: key);
 
-  final List trending;
+  final List<Movie> movieList;
   final String title;
 
   @override
   Widget build(BuildContext context) {
+    log('called here n.............');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,10 +34,10 @@ class MainTitleCard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                  trending.length,
+                  movieList.length,
                   (index) => MainImageCard(
                         indexs: index,
-                        trending: trending,
+                        movieList: movieList,
                       )),
             ),
           ),

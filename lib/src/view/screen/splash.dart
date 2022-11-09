@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:netflix_with_tmdb/src/controller/splash.dart';
+import 'package:netflix_with_tmdb/src/view_model/splash.dart';
 
 
 class Splash extends StatelessWidget {

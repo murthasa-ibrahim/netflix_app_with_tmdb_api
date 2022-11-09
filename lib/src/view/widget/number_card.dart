@@ -1,12 +1,14 @@
+
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_with_tmdb/src/model/movie_model.dart';
 
 import '../../../core/const.dart';
 import '../screen/description.dart';
 
 class NumberTitleCard extends StatelessWidget {
-  const NumberTitleCard({Key? key, required this.trending}) : super(key: key);
-  final List trending;
+  const NumberTitleCard({Key? key, required this.moveList}) : super(key: key);
+  final List<Movie> moveList;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class NumberTitleCard extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-                10, (index) => NumberCard(index: index, trending: trending)),
+                10, (index) => NumberCard(index: index, trending: moveList)),
           ),
         )
       ],
@@ -42,7 +44,7 @@ class NumberCard extends StatelessWidget {
       : super(key: key);
 
   final int index;
-  final List trending;
+  final List<Movie> trending;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -50,14 +52,8 @@ class NumberCard extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: ((context) => Description(
-                name: trending[index]['title'],
-                bannerUrl:
-                    'https://image.tmdb.org/t/p/w500/${trending[index]['backdrop_path']}',
-                description: trending[index]['overview'],
-                launchOn: trending[index]['release_date'],
-                vote: trending[index]['vote_average'].toString(),
-                posterUrl:
-                    'https://image.tmdb.org/t/p/w500/${trending[index]['poster_path  ']}')),
+                  moveList: trending[index],
+                )),
           ),
         );
       },
@@ -74,7 +70,7 @@ class NumberCard extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
-                        'https://image.tmdb.org/t/p/w500/${trending[index]['poster_path']}'),
+                        'https://image.tmdb.org/t/p/w500/${trending[index].posterPath}'),
                     fit: BoxFit.cover),
                 borderRadius: radius10,
               ),

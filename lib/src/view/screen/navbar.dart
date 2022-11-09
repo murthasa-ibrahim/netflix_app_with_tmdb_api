@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:netflix_with_tmdb/src/controller/navbar.dart';
+import 'package:netflix_with_tmdb/src/view_model/navbar.dart';
 
 class Navbar extends StatelessWidget {
   Navbar({Key? key}) : super(key: key);
